@@ -18,3 +18,7 @@
 .board-space:hover {
     box-shadow: 0 0 .5em inset orange;
 }
+
+.board-space:active {
+    box-shadow: 0 0 .5em inset green;
+}
