@@ -1,4 +1,20 @@
 .board-space {
     padding-top: 31%;
     border: solid .5em darkslategrey ;
+    position: relative;
+}
+
+.board-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-weight: bold;
+    font-size: 9em;
+    text-align: center;
+}
+
+.board-space:hover {
+    box-shadow: 0 0 .5em inset orange;
 }

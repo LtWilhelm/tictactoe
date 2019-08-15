@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
     <link rel="stylesheet" href="./sources/css/style.css">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
     <title>Tic-Tac-Toe</title>
 </head>
 
@@ -18,21 +22,23 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-4 bg-light board-space rounded-circle border-dark" data-row="0" data-col="0"></div>
-            <div class="col-4 bg-white board-space rounded-circle border-dark" data-row="0" data-col="1"></div>
-            <div class="col-4 bg-light board-space rounded-circle border-dark" data-row="0" data-col="2"></div>
+            <div class="col-4 bg-light board-space rounded-circle border-dark" id="00" data-row="0" data-col="0"></div>
+            <div class="col-4 bg-white board-space rounded-circle border-dark" id="01" data-row="0" data-col="1"></div>
+            <div class="col-4 bg-light board-space rounded-circle border-dark" id="02" data-row="0" data-col="2"></div>
         </div>
         <div class="row">
-            <div class="col-4 bg-white board-space rounded-circle border-dark" data-row="1" data-col="0"></div>
-            <div class="col-4 bg-light board-space rounded-circle border-dark" data-row="1" data-col="1"></div>
-            <div class="col-4 bg-white board-space rounded-circle border-dark" data-row="1" data-col="2"></div>
+            <div class="col-4 bg-white board-space rounded-circle border-dark" id="10" data-row="1" data-col="0"></div>
+            <div class="col-4 bg-light board-space rounded-circle border-dark" id="11" data-row="1" data-col="1"></div>
+            <div class="col-4 bg-white board-space rounded-circle border-dark" id="12" data-row="1" data-col="2"></div>
         </div>
         <div class="row">
-            <div class="col-4 bg-light board-space rounded-circle border-dark" data-row="2" data-col="0"></div>
-            <div class="col-4 bg-white board-space rounded-circle border-dark" data-row="2" data-col="1"></div>
-            <div class="col-4 bg-light board-space rounded-circle border-dark" data-row="2" data-col="2"></div>
+            <div class="col-4 bg-light board-space rounded-circle border-dark" id="20" data-row="2" data-col="0"></div>
+            <div class="col-4 bg-white board-space rounded-circle border-dark" id="21" data-row="2" data-col="1"></div>
+            <div class="col-4 bg-light board-space rounded-circle border-dark" id="22" data-row="2" data-col="2"></div>
         </div>
     </div>
+
+    <script src="./sources/script/script.js"></script>
 </body>
 
 </html>
