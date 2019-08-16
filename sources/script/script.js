@@ -4,6 +4,7 @@ let ai = 1;
 
 
 function gameState(board) {
+    console.log(board)
     // checks each row
     for (let r = 0; r < board.length; r++) {
         if (board[r][0] === board[r][1] && board[r][0] === board[r][2] && board[r][0] !== 0) {
@@ -61,7 +62,7 @@ function findBestMove(board) {
             if (board[r][c] === 0) {
                 board[r][c] = ai;
 
-                let moveVal = minimax(board, 0, false);
+                let moveVal = minimax(board, 0, true);
 
                 board[r][c] = 0;
 
@@ -78,15 +79,14 @@ function findBestMove(board) {
 }
 
 function minimax(board, depth, isMax) {
+    console.log(depth, isMax)
+    
     let score = gameState(board);
     if (score === 10){
         return score - depth};
     if (score === -10){
         return score + depth};
     if (!isMovesLeft(board)){
-        // if(isMax) {
-        //     return -depth;
-        // } else return depth;
         return 0;
     }
 
@@ -130,7 +130,8 @@ $('.board-space').on('click', function () {
         $b.html('<p class="board-content">O');
         board[$b.attr('data-row')][$b.attr('data-col')] = player;
         console.log(board)
-    
+        
+
         let currentState = gameState(board);
         if (currentState === -10) {
             return console.log('player wins')
