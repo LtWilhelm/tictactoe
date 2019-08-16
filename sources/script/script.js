@@ -148,6 +148,7 @@ $('.board-space').on('click', function () {
     const $b = $(this);
     if (board[$b.attr('data-row')][$b.attr('data-col')] === 0) {
         board[$b.attr('data-row')][$b.attr('data-col')] = player;
+        redraw();
         
         let currentState = gameState(board);
         if (currentState === -10) {
