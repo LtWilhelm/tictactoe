@@ -4,36 +4,47 @@ let ai = 1;
 
 
 function gameState(board) {
-    console.log(board)
-    // checks each row
-    for (let r = 0; r < board.length; r++) {
-        if (board[r][0] === board[r][1] && board[r][0] === board[r][2] && board[r][0] !== 0) {
-            if (board[r][0] === player) {
+    console.log(evalBoard)
+    // check rows
+    for (let r = 0; r < evalBoard.length; r++) {
+        if (evalBoard[r][0] === evalBoard[r][1] && evalBoard[r][0] === evalBoard[r][2]) {
+            if (evalBoard[r][0] === player) {
                 return -10;
-            } else return 10;
+            } else if (evalBoard[r][0] === ai) {
+                return 10;
+            }
         }
     }
 
-    // checks each column
-    for (let i = 0; i < board[0].length; i++) {
-        if (board[0][i] === board[1][i] && board[0][i] === board[2][i] && board[0][i] !== 0) {
-            if (board[0][i] === player) {
+    // check columns
+    for (let c = 0; c < 3; c++) {
+        if (evalBoard[0][c] === evalBoard[1][c] && evalBoard[0][c] === evalBoard[2][c]) {
+            if (evalBoard[0][c] === player) {
                 return -10;
-            } else return 10;
-        };
+            } else if (evalBoard[0][c] === ai) {
+                return 10;
+            }
+        }
     }
 
-    // checks diagonals
-    if (board[0][0] === board[1][1] && board[0][0] === board[2][2] && board[0][0] !== 0) {
-        if (board[0][0] === player) {
-            return -10
-        } else return 10;
-    };
-    if (board[0][2] === board[1][1] && board[0][0] === board[2][0] && board[0][2] !== 0) {
-        if (board[0][0] === player) {
-            return -10
-        } else return 10;
-    };
+    // check diagonals
+    if (evalBoard[0][0]===evalBoard[1][1] && evalBoard[1][1]===evalBoard[2][2]) 
+    { 
+        if (evalBoard[0][0]=== player) 
+            return -10; 
+        else if (evalBoard[0][0]===ai) 
+            return 10; 
+    } 
+
+    if (evalBoard[0][2]===evalBoard[1][1] && evalBoard[1][1]===evalBoard[2][0]) 
+    { 
+        if (evalBoard[0][2]===player) {
+            return -10; 
+        }
+        else if (evalBoard[0][2]===ai) {
+            return 10; 
+        }
+    } 
 
     return 0;
 }
@@ -79,7 +90,7 @@ function findBestMove(board) {
 }
 
 function minimax(board, depth, isMax) {
-    console.log(depth, isMax)
+    // console.log(depth, isMax)
     
     let score = gameState(board);
     if (score === 10){
@@ -141,15 +152,21 @@ $('.board-space').on('click', function () {
 
         let moveID = '#';
         let aiMove = findBestMove(board);
-        console.log(aiMove)
+        // console.log(aiMove)
     
         moveID += aiMove.row;
         moveID += aiMove.col;
     
         board[aiMove.row][aiMove.col] = ai;
-        console.log(board);
+        // console.log(board);
         $(moveID).html('<p class="board-content">X');
     
+        currentState = gameState(board);
+        if (currentState === -10) {
+            return console.log('player wins')
+        } else if (currentState === 10) {
+            return console.log('computer wins')
+        }
 
     }
 });
