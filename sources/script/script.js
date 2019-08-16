@@ -4,13 +4,13 @@ let ai = 1;
 
 
 function gameState(board) {
-    console.log(evalBoard)
+    // console.log(board)
     // check rows
-    for (let r = 0; r < evalBoard.length; r++) {
-        if (evalBoard[r][0] === evalBoard[r][1] && evalBoard[r][0] === evalBoard[r][2]) {
-            if (evalBoard[r][0] === player) {
+    for (let r = 0; r < board.length; r++) {
+        if (board[r][0] === board[r][1] && board[r][0] === board[r][2]) {
+            if (board[r][0] === player) {
                 return -10;
-            } else if (evalBoard[r][0] === ai) {
+            } else if (board[r][0] === ai) {
                 return 10;
             }
         }
@@ -18,30 +18,30 @@ function gameState(board) {
 
     // check columns
     for (let c = 0; c < 3; c++) {
-        if (evalBoard[0][c] === evalBoard[1][c] && evalBoard[0][c] === evalBoard[2][c]) {
-            if (evalBoard[0][c] === player) {
+        if (board[0][c] === board[1][c] && board[0][c] === board[2][c]) {
+            if (board[0][c] === player) {
                 return -10;
-            } else if (evalBoard[0][c] === ai) {
+            } else if (board[0][c] === ai) {
                 return 10;
             }
         }
     }
 
     // check diagonals
-    if (evalBoard[0][0]===evalBoard[1][1] && evalBoard[1][1]===evalBoard[2][2]) 
+    if (board[0][0]===board[1][1] && board[1][1]===board[2][2]) 
     { 
-        if (evalBoard[0][0]=== player) 
+        if (board[0][0]=== player) 
             return -10; 
-        else if (evalBoard[0][0]===ai) 
+        else if (board[0][0]===ai) 
             return 10; 
     } 
 
-    if (evalBoard[0][2]===evalBoard[1][1] && evalBoard[1][1]===evalBoard[2][0]) 
+    if (board[0][2]===board[1][1] && board[1][1]===board[2][0]) 
     { 
-        if (evalBoard[0][2]===player) {
+        if (board[0][2]===player) {
             return -10; 
         }
-        else if (evalBoard[0][2]===ai) {
+        else if (board[0][2]===ai) {
             return 10; 
         }
     } 
@@ -169,4 +169,6 @@ $('.board-space').on('click', function () {
         }
 
     }
+
+    
 });
