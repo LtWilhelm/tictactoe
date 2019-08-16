@@ -5,7 +5,7 @@ let ai = 1;
 startGame();
 function startGame() {
     board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-    board[Math.floor(Math.random() * 3)][Math.floor(Math.random() * 3)] = ai;
+    // board[Math.floor(Math.random() * 3)][Math.floor(Math.random() * 3)] = ai;
     $('#cmodal').hide('fast');
     redraw();
 }
@@ -25,7 +25,7 @@ function gameState(board) {
 
     // check columns
     for (let c = 0; c < 3; c++) {
-        if (board[0][c] === board[1][c] && board[0][c] === board[2][c]) {
+        if (board[0][c] === board[1][c] && board[1][c] === board[2][c]) {
             if (board[0][c] === player) {
                 return -10;
             } else if (board[0][c] === ai) {
@@ -37,18 +37,19 @@ function gameState(board) {
     // check diagonals
     if (board[0][0]===board[1][1] && board[1][1]===board[2][2]) 
     { 
-        if (board[0][0]=== player) 
+        if (board[0][0]=== player) {
             return -10; 
-        else if (board[0][0]===ai) 
+        }
+        else if (board[0][0]===ai) {
             return 10; 
+        }
     } 
 
     if (board[0][2]===board[1][1] && board[1][1]===board[2][0]) 
     { 
         if (board[0][2]===player) {
             return -10; 
-        }
-        else if (board[0][2]===ai) {
+        } else if (board[0][2]===ai) {
             return 10; 
         }
     } 
@@ -80,7 +81,7 @@ function findBestMove(board) {
             if (board[r][c] === 0) {
                 board[r][c] = ai;
 
-                let moveVal = minimax(board, 0, true);
+                let moveVal = minimax(board, 1, true);
 
                 board[r][c] = 0;
 
@@ -109,14 +110,14 @@ function minimax(board, depth, isMax) {
     }
 
     if (isMax) {
-        let best = -1000;
+        let best = 1000;
 
         for (let r = 0; r < board.length; r++) {
             for (let c = 0; c < board[r].length; c++) {
                 if (board[r][c] === 0) {
                     board[r][c] = player;
 
-                    best = Math.max(best, minimax(board, depth + 1, !isMax));
+                    best = Math.min(best, minimax(board, depth + 1, !isMax));
 
                     board[r][c] = 0;
                 }
@@ -125,14 +126,14 @@ function minimax(board, depth, isMax) {
 
         return best;
     } else {
-        let best = 1000;
+        let best = -1000;
 
         for (let r = 0; r < board.length; r++) {
             for (let c = 0; c < board[r].length; c++) {
                 if (board[r][c] === 0) {
                     board[r][c] = ai;
 
-                    best = Math.min(best, minimax(board, depth + 1, !isMax));
+                    best = Math.max(best, minimax(board, depth + 1, !isMax));
 
                     board[r][c] = 0;
                 }

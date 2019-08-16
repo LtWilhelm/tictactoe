@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-.board-space:not(disabled):hover {
+.board-space:not([disabled]):hover {
     box-shadow: 0 0 .5em inset purple;
 }
 
