@@ -182,10 +182,10 @@ function redraw(){
             let fieldID = '#' + r + c;
             let $field = $(fieldID);
             if (board[r][c] === player) {
-                $field.html('<p class="board-content">O');
+                $field.html('<img src="./sources/img/o.png" class="board-content">');
                 $field.attr('disabled', true);
             } else if (board[r][c] === ai) {
-                $field.html('<p class="board-content">X');
+                $field.html('<img src="./sources/img/x.png" class="board-content">');
                 $field.attr('disabled', true);
             } else {
                 $field.empty();
