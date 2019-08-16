@@ -1,7 +1,14 @@
-let board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+let board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 let player = -1;
 let ai = 1;
 
+startGame();
+function startGame() {
+    board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    board[Math.floor(Math.random() * 3)][Math.floor(Math.random() * 3)] = ai;
+    $('#cmodal').hide('fast');
+    redraw();
+}
 
 function gameState(board) {
     // console.log(board)
@@ -136,39 +143,60 @@ function minimax(board, depth, isMax) {
 }
 
 $('.board-space').on('click', function () {
+    redraw();
     const $b = $(this);
     if (board[$b.attr('data-row')][$b.attr('data-col')] === 0) {
-        $b.html('<p class="board-content">O');
         board[$b.attr('data-row')][$b.attr('data-col')] = player;
-        console.log(board)
         
-
         let currentState = gameState(board);
         if (currentState === -10) {
+            showModal('You win!')
             return console.log('player wins')
-        } else if (currentState === 10) {
-            return console.log('computer wins')
         }
-
-        let moveID = '#';
         let aiMove = findBestMove(board);
+        if (aiMove.col === -1 || aiMove.row === -1) {
+            showModal('DRAW!')
+            return console.log('draw')
+        }
+        redraw();
         // console.log(aiMove)
-    
-        moveID += aiMove.row;
-        moveID += aiMove.col;
-    
         board[aiMove.row][aiMove.col] = ai;
-        // console.log(board);
-        $(moveID).html('<p class="board-content">X');
-    
+        console.log(board);
+        redraw();
         currentState = gameState(board);
-        if (currentState === -10) {
-            return console.log('player wins')
-        } else if (currentState === 10) {
+        if (currentState === 10) {
+            showModal('Computer Wins')
             return console.log('computer wins')
         }
-
+        
+        redraw();
     }
 
-    
+
 });
+
+function redraw(){
+    for (let r = 0; r < board.length; r++) {
+        for (let c = 0; c < board[r].length; c++) {
+            let fieldID = '#' + r + c;
+            let $field = $(fieldID);
+            if (board[r][c] === player) {
+                $field.html('<p class="board-content">O');
+                $field.attr('disabled', true);
+            } else if (board[r][c] === ai) {
+                $field.html('<p class="board-content">X');
+                $field.attr('disabled', true);
+            } else {
+                $field.empty();
+                $field.attr('disabled', false);
+            }
+        }
+    }
+}
+
+function showModal(text) {
+    $('#result').text(text);
+    $('#cmodal').show('fast');
+}
+
+$('#play').on('click', startGame);
